@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TestNavigation from './components/TestNavigation'
 import Preference from './components/Preference'
 import Test from './components/test'
+import Test2 from './components/test2'
 export default class HelloWorldApp extends Component {
   render() {
     const Stack = createStackNavigator();
@@ -19,7 +20,7 @@ export default class HelloWorldApp extends Component {
           }}
         >
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="test" component={Test} />
+          <Stack.Screen name="test2" component={Test2} />
           <Stack.Screen name="Preference" component={Preference} />
           <Stack.Screen name="TestNavigation" component={TestNavigation} />
         </Stack.Navigator>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, ImageBackground, Dimensions, Image, FlatList } from 'react-native'
+import { Text, View, ImageBackground, Dimensions, FlatList } from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-// Icon.loadFont();
+
 let data = [
   { site: "site1", id: 1 },
   { site: "site2", id: 2 },
@@ -21,15 +21,10 @@ let data = [
 
 export default function SiteList(props) {
   const width = Dimensions.get('window').width;
-  let [selected, setSelected] = React.useState(new Map());
-  // props.site&&selected.set(new Map([[props.id,true]]))
+  let [selected, setSelected] = React.useState(props.id);
   const onSelect = React.useCallback(
     id => {
-      // setSelected.set(new Map([props.id,!selected.get(id)]))
-      let newSelected = new Map();
-      newSelected.set(id, !selected.get(id));
-      setSelected(newSelected);
-      
+      setSelected(id);
     },
     [selected],
   );
@@ -44,15 +39,12 @@ export default function SiteList(props) {
             <View style={{ width: 30, alignItems: 'center' }}>
               <TouchableOpacity
                 onPress={() => {
-                  let selectSite = data.filter((item) => {
-                    let id = "";
-                    selected.forEach((val, key) => id = key);
-                    if (item.id == id) {
-                      return item;
-                    }
-                  })
-                  console.log(selected)
-                  return props.setSiteVisible(false, ...selectSite)
+                  let selectedSite = data.find((val) => val.id == selected)
+                  if (selectedSite) {
+                    return props.setSiteVisible(false, selectedSite)
+                  } else {
+                    alert('Please select one site');
+                  }
                 }}
               >
                 <Text><Icon name="ios-close" size={30} color='#ccc'></Icon></Text>
@@ -98,7 +90,7 @@ function Item({ id, site, selected, onSelect, width }) {
         style={{ flex: 1, width: width, alignItems: 'center', backgroundColor: '#fff', flexDirection: "row", height: 80, borderBottomWidth: 1, borderBottomColor: '#aaa' }}
       >
         <View style={{ width: 30, marginLeft: 20 }}>
-          {selected.get(id)?
+          {selected === id ?
             <Icon name="md-checkmark-circle" size={29} color='#0891cf'></Icon> :
             <Icon name="md-checkmark-circle" size={29} color='#ccc'></Icon>
           }

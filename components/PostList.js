@@ -5,18 +5,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 let data = [
-  { plant: "plant1", id: 1 },
-  { plant: "plant2", id: 2 },
-  { plant: "plant3", id: 3 },
-  { plant: "plant4", id: 4 },
-  { plant: "plant5", id: 5 },
-  { plant: "plant6", id: 6 },
-  { plant: "plant7", id: 7 },
-  { plant: "plant8", id: 8 },
-  { plant: "plant9", id: 9 },
-  { plant: "plant10", id: 10 },
-  { plant: "plant11", id: 11 },
-  { plant: "plant12", id: 12 },
+  { post: "post1", id: 1 },
+  { post: "post2", id: 2 },
+  { post: "post3", id: 3 },
+  { post: "post4", id: 4 },
+  { post: "post5", id: 5 },
+  { post: "post6", id: 6 },
+  { post: "post7", id: 7 },
+  { post: "post8", id: 8 },
+  { post: "post9", id: 9 },
+  { post: "post10", id: 10 },
+  { post: "post11", id: 11 },
+  { post: "post12", id: 12 },
 ]
 
 export default function PlantList(props) {
@@ -40,12 +40,12 @@ export default function PlantList(props) {
               <TouchableOpacity
                 onPress={() => {
                   console.log(selected)
-                  let selectedPlant = data.find((val) => val.id == selected)
+                  let selectedPost = data.find((val) => val.id == selected)
                   
-                  if (selectedPlant) {
-                     return props.plantVisible(false, selectedPlant)
+                  if (selectedPost) {
+                     return props.postVisible(false, selectedPost)
                   } else {
-                    alert('Please select one plant');
+                    alert('Please select one post');
                   }
                 }}
               >
@@ -53,7 +53,7 @@ export default function PlantList(props) {
               </TouchableOpacity>
             </View>
             <View style={{ flex: 1, minHeight: 30, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ color: '#fff' }}>Select Plant</Text>
+              <Text style={{ color: '#fff' }}>Select Post</Text>
             </View>
             <View style={{ width: 30, alignItems: 'center', backgroundColor: 'green' }}>
             </View>
@@ -68,7 +68,7 @@ export default function PlantList(props) {
           renderItem={({ item }) => {
             return <Item
               id={item.id}
-              plant={item.plant}
+              post={item.post}
               selected={selected}
               onSelect={onSelect}
               width={0.95 * Dimensions.get('window').width}
@@ -83,7 +83,7 @@ export default function PlantList(props) {
   )
 }
 
-function Item({ id, plant, selected, onSelect, width }) {
+function Item({ id, post, selected, onSelect, width }) {
   return (
     <TouchableOpacity
       onPress={() => onSelect(id)}
@@ -98,7 +98,7 @@ function Item({ id, plant, selected, onSelect, width }) {
           }
         </View>
         <View style={{ flex: 1, marginLeft: 10 }}>
-          <Text>{plant}</Text>
+          <Text>{post}</Text>
         </View>
       </View>
     </TouchableOpacity>)

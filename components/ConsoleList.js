@@ -5,18 +5,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 let data = [
-  { plant: "plant1", id: 1 },
-  { plant: "plant2", id: 2 },
-  { plant: "plant3", id: 3 },
-  { plant: "plant4", id: 4 },
-  { plant: "plant5", id: 5 },
-  { plant: "plant6", id: 6 },
-  { plant: "plant7", id: 7 },
-  { plant: "plant8", id: 8 },
-  { plant: "plant9", id: 9 },
-  { plant: "plant10", id: 10 },
-  { plant: "plant11", id: 11 },
-  { plant: "plant12", id: 12 },
+  { console: "console1", id: 1 },
+  { console: "console2", id: 2 },
+  { console: "console3", id: 3 },
+  { console: "console4", id: 4 },
+  { console: "console5", id: 5 },
+  { console: "console6", id: 6 },
+  { console: "console7", id: 7 },
+  { console: "console8", id: 8 },
+  { console: "console9", id: 9 },
+  { console: "console10", id: 10 },
+  { console: "console11", id: 11 },
+  { console: "console12", id: 12 },
 ]
 
 export default function PlantList(props) {
@@ -40,12 +40,12 @@ export default function PlantList(props) {
               <TouchableOpacity
                 onPress={() => {
                   console.log(selected)
-                  let selectedPlant = data.find((val) => val.id == selected)
+                  let selectedConsole = data.find((val) => val.id == selected)
                   
-                  if (selectedPlant) {
-                     return props.plantVisible(false, selectedPlant)
+                  if (selectedConsole) {
+                     return props.consoleVisible(false, selectedConsole)
                   } else {
-                    alert('Please select one plant');
+                    alert('Please select one console');
                   }
                 }}
               >
@@ -53,7 +53,7 @@ export default function PlantList(props) {
               </TouchableOpacity>
             </View>
             <View style={{ flex: 1, minHeight: 30, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ color: '#fff' }}>Select Plant</Text>
+              <Text style={{ color: '#fff' }}>Select Console</Text>
             </View>
             <View style={{ width: 30, alignItems: 'center', backgroundColor: 'green' }}>
             </View>
@@ -68,7 +68,7 @@ export default function PlantList(props) {
           renderItem={({ item }) => {
             return <Item
               id={item.id}
-              plant={item.plant}
+              console={item.console}
               selected={selected}
               onSelect={onSelect}
               width={0.95 * Dimensions.get('window').width}
@@ -83,7 +83,7 @@ export default function PlantList(props) {
   )
 }
 
-function Item({ id, plant, selected, onSelect, width }) {
+function Item({ id, console, selected, onSelect, width }) {
   return (
     <TouchableOpacity
       onPress={() => onSelect(id)}
@@ -98,7 +98,7 @@ function Item({ id, plant, selected, onSelect, width }) {
           }
         </View>
         <View style={{ flex: 1, marginLeft: 10 }}>
-          <Text>{plant}</Text>
+          <Text>{console}</Text>
         </View>
       </View>
     </TouchableOpacity>)

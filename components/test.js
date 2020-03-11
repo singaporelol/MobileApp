@@ -5,88 +5,35 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  Modal,
+  View
 } from 'react-native';
 
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
-  },
-];
-
-function Item({ id, title, selected, onSelect }) {
-  return (
-    <TouchableOpacity
-      onPress={() => onSelect(id)}
-      style={[
-        styles.item,
-        { backgroundColor: selected ? '#6e3b6e' : '#f9c2ff' },
-      ]}
-    >
-      <Text style={styles.title}>{title}</Text>
-    </TouchableOpacity>
-  );
-}
-
-export default function App(props) {
-  const [selected, setSelected] = React.useState(new Map());
-
-  const onSelect = React.useCallback(
-    id => {
-      console.log(selected)
-      const newSelected = new Map(selected);
-      newSelected.set(id, !selected.get(id));
-      console.log(newSelected)
-      setSelected(newSelected);
-    },
-    [selected],
-  );
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-        onPress={()=>props.navigation.navigate('Login')}
+export default class Test2 extends React.Component {
+  // const [display, setdisplay] = useState(false);
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.props.display}
       >
-        <Text>asdf</Text>
-      </TouchableOpacity>
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => (
-          <Item
-            id={item.id}
-            title={item.title}
-            selected={!!selected.get(item.id)}
-            onSelect={onSelect}
-          />
-        )}
-        keyExtractor={item => item.id}
-        extraData={selected}
-      />
-    </SafeAreaView>
-  );
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity
+            onPress={() => {
+              // console.log(props)
+              return this.props.hhh(false)
+            }}
+          >
+            <Text>Click to close modal</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 80,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-});
