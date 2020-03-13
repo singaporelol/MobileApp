@@ -185,7 +185,7 @@ export default class Preference extends Component {
           <View style={{ width: 0.8 * width }}>
             <TouchableOpacity
               style={PerferenceStyle.loginButton}
-              onPress={() => navigation.navigate('Preference')}
+              onPress={() => navigation.navigate('Report')}
             >
               <Text
                 style={{ color: '#fff' }}
